@@ -5,6 +5,66 @@ All notable changes to the Claude Skills Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.3] - 2026-05-12 — chief-ai-officer-advisor: AI strategy with citations
+
+### Added — C-Level Advisory
+
+- **chief-ai-officer-advisor** skill (`./c-level-advisor/skills/chief-ai-officer-advisor/`) — opinionated, eval-demanding CAIO skill covering 4 specific decisions. The third decision-driven C-role skill in the founder-mode lineup, after general-counsel-advisor (v2.5.1) and chief-data-officer-advisor (v2.5.2).
+- **4 specific decisions covered** (not a generic AI strategy survey):
+  1. **Should we use an API, fine-tune, or build our own?** (model build-vs-buy with 3-year TCO)
+  2. **Is this AI use case high-risk under regulation, and how do we govern it?** (EU AI Act + NIST AI RMF + US state patchwork)
+  3. **When do we switch from API to self-hosted, and at what cost?** (token economics with breakeven analysis)
+  4. **What AI role do we hire next?** (stage-to-role map; AI engineer ≠ ML engineer ≠ research scientist)
+- **3 stdlib Python tools with deterministic logic**:
+  - **`model_buildvsbuy_calculator.py`** — Returns API / FINE_TUNE / BUILD recommendation, 3-year TCO across 6 path variants (API frontier-premium/economy/open-hosted, fine-tune, self-hosted 70B-class, build-from-scratch), and breakeven analysis. Balances economic crossover with practical feasibility (data availability, ML team capacity, compliance constraints). Embedded sample (B2B customer support, 4M queries/mo) → API recommendation despite economic breakeven crossed, due to no fine-tune data + 1-engineer ML team.
+  - **`ai_risk_classifier.py`** — Returns EU AI Act tier (PROHIBITED / HIGH / LIMITED / MINIMAL) with Article-level citations, US state triggers (NYC LL 144, CO AI Act, IL HB 53, CA SB 1001, IL BIPA), industry overlays (FDA AI/ML, ECOA, NAIC AI bulletin), required-controls list, and conformity-assessment flag. Embedded sample (AI hiring screening in EU+NY+CO+IL+CA) → HIGH risk, conformity required, 3 US state triggers, 14 controls. 7 EU AI Act articles cited (5, 6, 9-15, 43, 49, 72).
+  - **`ai_cost_economics.py`** — Returns monthly costs at 6 paths (3 API tiers + self-hosted at low/mid/high GPU rates), breakeven monthly tokens, sensitivity to GPU pricing. Embedded sample (5M tokens/day, 750M/mo) → API at $1,500/mo beats self-hosted at $13,450/mo by 9x; breakeven at 6.7B tokens/mo for 70B-class on A100s. Reveals key insight that self-hosted floor (24/7 warm GPUs + ops) makes API economics dominate at typical B2B SaaS scale.
+- **4 in-depth references each citing 5+ authoritative sources**:
+  - `model_buildvsbuy_strategy.md` — 3 paths with failure modes, 6 fine-tuning approaches (few-shot, prompt eng, RAG, LoRA, full FT, RLHF/DPO, continued pre-training) ranked by cost and use case, decision tree, eval-first discipline. Cites Anthropic/OpenAI/Google/Meta model cards, LoRA paper (Hu et al.), RLHF paper (Ouyang et al.), DPO paper (Rafailov et al.), Foundation Models report (Stanford CRFM), Foundation Models and Fair Use (Henderson et al.).
+  - `ai_risk_governance.md` — Full EU AI Act tier map (prohibited Article 5, high-risk Article 6 + Annex III, limited-risk Article 50, minimal-risk) with all 8 high-risk domains + 11 obligation Articles. NIST AI RMF 1.0 (4 functions, 7 trustworthy characteristics). US state patchwork (NYC LL 144, CO AI Act, IL HB 53, CA SB 1001, CA AB 2013, CA AB 1008, IL BIPA, WA MHMD, TX biometric). Industry overlays (FDA, CFPB, Fed SR 11-7, NYDFS Reg 23, ECOA, NAIC). 10-item governance program checklist. When-to-hire-AI-counsel criteria.
+  - `ai_cost_economics.md` — 2026 API pricing across 4 tiers, GPU rental (A100/H100/H200/B200), throughput estimates, GPU count by model size, cost-per-million-tokens calculations, utilization reality (interactive 20-40%, batch 60-80%), 6 hidden costs of self-hosted, 6 hidden costs of API, migration cost (3-6 months, 2-3 engineers), prompt caching as economics lever. Cites vLLM paper, DistServe (NSDI 2024), HELM benchmark, Artificial Analysis, Llama 3.1 paper.
+  - `ai_team_org_evolution.md` — 5-stage role map (pre-seed → late-stage), 9-role definition table distinguishing AI engineer / ML engineer / research scientist / data scientist / AI safety / AI PM / Head of AI / CAIO. AI team vs data team contrast (8 dimensions). 7 specific anti-patterns. Hiring sequencing rule. Cites Huyen "Designing ML Systems" + "AI Engineering", State of AI Report, Karpathy's AI engineer archetype discussions.
+- **cs-caio-advisor** agent (`./c-level-advisor/c-level-agents/agents/cs-caio-advisor.md`) — eval-demanding realist orchestrating the skill. Voice: "What does this AI need to be good at, and how would you measure it?" Treats every AI use case as a hiring decision; pushes back on AI hype; demands fallback behavior before scale.
+- **`/cs:caio-review`** slash command (`./c-level-advisor/c-level-agents/skills/caio-review/SKILL.md`) — 6-question forcing interrogation: eval discipline, hallucination SLO, regulatory tier, model selection, cost trajectory, role-that-unblocks-this.
+- **cs-caio-advisor voice spec** added to `persona-voices.md`.
+
+### Why This Matters
+
+By 2026, every founder is making AI decisions that didn't exist 18 months ago — and gstack, general legal counsel, CTOs, and CISOs each only cover part of the picture. The CAIO concerns that this skill uniquely owns:
+
+1. **Model build-vs-buy is not a single answer.** 80% of B2B SaaS should use frontier APIs; 15% should fine-tune; <1% should pre-train. The decision depends on data availability + team capacity + economics + compliance, not on technology preference.
+2. **EU AI Act conformity is consequential and slow.** A high-risk AI use case requires 3-12 months of conformity work + EU database registration + 10 Articles of obligations. Discovering this 2 weeks before EU launch is a category of pain this skill prevents.
+3. **API vs self-hosted breakeven is much higher than founders expect.** For 70B-class on rented A100s, breakeven is typically 1-10 billion tokens per month — not the 100M-500M most founders intuit. Self-hosting "to save money" usually wastes engineering capacity.
+4. **AI team confusion costs 12 months of productivity.** Hiring a research scientist as first AI hire is the single most common AI hiring mistake, and it's expensive to undo.
+
+### Built with Karpathy-Coder Discipline
+
+Maintained the discipline established in v2.5.2:
+
+- **Principle 1 (Think before coding):** assumptions surfaced upfront before file writes. Locked 4 decisions, 3 tools, 4 references, success criteria. User confirmed direction.
+- **Principle 2 (Simplicity first):** rejected "generic AI strategy survey" framing. Each tool covers ONE decision. Each reference answers ONE decision. No overlap with engineering/rag-architect, engineering/agent-designer, engineering/llm-cost-optimizer.
+- **Principle 3 (Surgical changes):** touched only files in the locked plan. No "while I'm here" cleanup.
+- **Principle 4 (Goal-driven execution):** all 3 tools smoke-tested with embedded samples before commit. Verifiable success criteria met.
+
+### Changed
+
+- **Total skills:** 265 → 266 (+1 chief-ai-officer-advisor)
+- **cs-* agents:** 30 → 31 (+1 cs-caio-advisor in c-level-agents plugin)
+- **/cs:* slash commands:** 18 → 19 (+1 /cs:caio-review)
+- **Python tools:** 364 → 367 (+3 in chief-ai-officer-advisor/scripts/)
+- **References:** 494 → 498 (+4 in chief-ai-officer-advisor/references/)
+- **c-level-skills** plugin: v2.5.2 → v2.5.3 (description expanded; 30 → 31 skills, 10 → 11 cs-* agents)
+- **c-level-agents** plugin: v1.2.0 → v1.3.0 (description expanded with CAIO; new agent + command; +`chief-ai-officer`, `caio`, `ai-strategy`, `model-buildvsbuy`, `eu-ai-act`, `ai-cost-economics` keywords)
+
+### Known follow-ups (NOT included this PR per surgical scope)
+
+- The `cs-general-counsel-advisor` voice spec is still missing from `persona-voices.md` (carried from v2.5.1). Will be addressed in a separate small PR.
+- Phase 2 remainder (3 more C-roles: CCO customer, VPE engineering execution, CCO comms) deferred to v2.5.4+.
+
+### Disclaimer
+
+The `chief-ai-officer-advisor` skill surfaces strategic AI decisions but is **not legal advice** for AI regulation, **not a replacement for outside AI counsel** for EU AI Act conformity assessments, and **not a tactical AI/ML engineering skill**. For tactical AI engineering, see `engineering/rag-architect/`, `engineering/agent-designer/`, `engineering/prompt-governance/`, `engineering/self-eval/`, `engineering/llm-cost-optimizer/`.
+
 ## [2.5.2] - 2026-05-12 — chief-data-officer-advisor: data strategy without surveys
 
 ### Added — C-Level Advisory
