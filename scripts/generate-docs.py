@@ -567,6 +567,85 @@ description: "{agent_desc}"
                 agent_count += 1
                 agent_entries.append((title, slug, domain_label, domain_icon))
 
+    # Pass 2: walk plugin-internal agents/ folders.
+    # Plugins like c-level-agents, executive-mentor, agenthub, llm-wiki,
+    # self-improving-agent bundle agents alongside their skills at
+    # <domain>/<plugin>/agents/*.md. These weren't previously discovered;
+    # nav entries in mkdocs.yml that point to them would 404.
+    SKILL_TO_AGENT_DOMAIN = {
+        "c-level-advisor": "c-level",
+        "engineering": "engineering",
+        "engineering-team": "engineering-team",
+        "marketing-skill": "marketing",
+        "product-team": "product",
+        "project-management": "project-management",
+        "ra-qm-team": "ra-qm-team",
+        "business-growth": "business-growth",
+        "finance": "finance",
+    }
+    seen_slugs = {entry[1] for entry in agent_entries}
+    for skill_domain in DOMAINS:
+        skill_domain_path = os.path.join(REPO_ROOT, skill_domain)
+        if not os.path.isdir(skill_domain_path):
+            continue
+        for plugin_name in sorted(os.listdir(skill_domain_path)):
+            plugin_agents_dir = os.path.join(skill_domain_path, plugin_name, "agents")
+            if not os.path.isdir(plugin_agents_dir):
+                continue
+            agent_domain_key = SKILL_TO_AGENT_DOMAIN.get(skill_domain, skill_domain)
+            domain_info = AGENT_DOMAINS.get(agent_domain_key, (prettify(agent_domain_key), ":material-account:"))
+            domain_label, domain_icon = domain_info
+            for agent_file in sorted(os.listdir(plugin_agents_dir)):
+                if not agent_file.endswith(".md"):
+                    continue
+                agent_name = agent_file.replace(".md", "")
+                slug = slugify(agent_name)
+                if slug in seen_slugs:
+                    continue
+                agent_path = os.path.join(plugin_agents_dir, agent_file)
+                rel = os.path.relpath(agent_path, REPO_ROOT)
+                title = extract_title(agent_path) or prettify(agent_name)
+                title = re.sub(r"[*_`]", "", title)
+                if re.match(r"^cs-[a-z-]+$", title):
+                    title = prettify(title.removeprefix("cs-"))
+
+                with open(agent_path, "r", encoding="utf-8") as f:
+                    content = f.read()
+
+                content_clean = strip_content(content)
+                content_clean = rewrite_relative_links(content_clean, rel)
+
+                agent_seo_title = f"{title} — AI Coding Agent & Codex Skill"
+                agent_fm_desc = extract_description_from_frontmatter(agent_path)
+                if agent_fm_desc:
+                    agent_clean = agent_fm_desc.strip("'\"").replace('"', "'")
+                    if len(agent_clean) > 150:
+                        agent_clean = agent_clean[:150].rsplit(" ", 1)[0].rstrip(".,;:—-")
+                    agent_desc = f"{agent_clean}. Agent-native orchestrator for Claude Code, Codex, Gemini CLI."
+                else:
+                    agent_desc = f"{title} — agent-native AI orchestrator for {domain_label}. Works with Claude Code, Codex CLI, Gemini CLI, and OpenClaw."
+
+                page = f'''---
+title: "{agent_seo_title}"
+description: "{agent_desc}"
+---
+
+# {title}
+
+<div class="page-meta" markdown>
+<span class="meta-badge">:material-robot: Agent</span>
+<span class="meta-badge">{domain_icon} {domain_label}</span>
+<span class="meta-badge">:material-github: <a href="https://github.com/alirezarezvani/claude-skills/tree/main/{rel}">Source</a></span>
+</div>
+
+{content_clean}'''
+                out_path = os.path.join(agents_docs_dir, f"{slug}.md")
+                with open(out_path, "w", encoding="utf-8") as f:
+                    f.write(page)
+                agent_count += 1
+                agent_entries.append((title, slug, domain_label, domain_icon))
+                seen_slugs.add(slug)
+
     # Generate agents index
     if agent_entries:
         agent_cards = ""
