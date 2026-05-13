@@ -5,6 +5,32 @@ All notable changes to the Claude Skills Library will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.6] - 2026-05-13 — Cleanup: missing voice specs + broken agent paths
+
+### Fixed
+
+- **3 missing voice specs added to `c-level-advisor/c-level-agents/references/persona-voices.md`:**
+  - `cs-ceo-advisor` — The Strategic Translator (tree-of-thought reasoning; refuses to debate tactics until the strategic question is named)
+  - `cs-cto-advisor` — The Architecture-First Pragmatist (ReAct reasoning; treats every architecture decision as a 3-year commitment)
+  - `cs-general-counsel-advisor` — The Risk-Paranoid Lawyer (Not Your Lawyer) — carry-over from v2.5.1
+  - All three agents existed but their voice specs were never added to the persona reference (cs-ceo / cs-cto pre-date the c-level-agents plugin; cs-gc was an oversight in v2.5.1).
+- **Broken paths fixed in 2 pre-existing agent files** (`agents/c-level/cs-ceo-advisor.md` and `agents/c-level/cs-cto-advisor.md`):
+  - All 57 references to `../../c-level-advisor/ceo-advisor/` and `../../c-level-advisor/cto-advisor/` updated to `../../c-level-advisor/skills/ceo-advisor/` and `../../c-level-advisor/skills/cto-advisor/` respectively (correct path; the bundled skills live under `skills/`)
+  - YAML `skills:` field also corrected (was `c-level-advisor/ceo-advisor`, now `c-level-advisor/skills/ceo-advisor`)
+- **karpathy-coder/diff_surgeon:** clean on staged diff
+
+### Why
+
+Both gaps were carry-over items noted across multiple PRs in this session (v2.5.1 → v2.5.5) per karpathy principle #3 (surgical scope — no unrelated cleanups inside scoped feature PRs). This dedicated cleanup PR addresses them in one focused change without touching any feature work.
+
+### Changed
+
+- `c-level-advisor/c-level-agents/references/persona-voices.md` — 13 → 13 voice specs cataloged (all cs-* agents in the persona-voices list now match the agents that exist)
+- `agents/c-level/cs-ceo-advisor.md` — 32 path corrections
+- `agents/c-level/cs-cto-advisor.md` — 25 path corrections
+
+No skill/agent/command count changes; no manifest version bumps (this is a pure-fix PR).
+
 ## [2.5.5] - 2026-05-13 — vpe-advisor: throughput-first VP of Engineering
 
 ### Added — C-Level Advisory
