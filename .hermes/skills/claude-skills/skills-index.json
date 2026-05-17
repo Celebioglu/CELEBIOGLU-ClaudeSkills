@@ -1,6 +1,6 @@
 {
   "source": "claude-code-skills",
-  "total_skills": 303,
+  "total_skills": 305,
   "domains": {
     "engineering": [
       {
@@ -357,6 +357,11 @@
         "name": "prompt-governance",
         "description": "Use when managing prompts in production at scale: versioning prompts, running A/B tests on prompts, building prompt registries, preventing prompt regressions, or creating eval pipelines for production AI features. Triggers: 'manage prompts in production', 'prompt versioning', 'prompt regression', 'prompt A/B test', 'prompt registry', 'eval pipeline'. NOT for writing or improving individual prompts (use senior-prompt-engineer). NOT for RAG pipeline design (use rag-architect). NOT for LLM cost reduction (use llm-cost-optimizer).",
         "path": "engineering/prompt-governance"
+      },
+      {
+        "name": "security-guidance",
+        "description": "PreToolUse security-anti-pattern hook for Claude Code. Catches 12 common security risks (command injection, XSS, SQL injection, unsafe deserialization, GitHub Actions workflow injection, eval/new Function code injection) BEFORE the Edit/Write/MultiEdit operation completes. Session-state caching prevents duplicate warnings on the same file+rule combo. Stdlib only \u2014 no dependencies. Use when you want a safety net during Claude Code sessions that touch security-sensitive code (auth, payments, user input handling, IaC). Disable with ENABLE_SECURITY_REMINDER=0 if you need to perform a verified-safe operation that would otherwise trip a pattern. Triggers \u2014 \"add security hook\", \"block unsafe code\", \"detect command injection before write\", \"prevent SQL injection patterns\", \"security warning hook\".",
+        "path": "engineering/security-guidance"
       },
       {
         "name": "slo-architect",
@@ -733,6 +738,11 @@
         "name": "ad-creative",
         "description": "When the user needs to generate, iterate, or scale ad creative for paid advertising. Use when they say 'write ad copy,' 'generate headlines,' 'create ad variations,' 'bulk creative,' 'iterate on ads,' 'ad copy validation,' 'RSA headlines,' 'Meta ad copy,' 'LinkedIn ad,' or 'creative testing.' This is pure creative production \u2014 distinct from paid-ads (campaign strategy). Use ad-creative when you need the copy, not the campaign plan.",
         "path": "marketing-skill/ad-creative"
+      },
+      {
+        "name": "aeo",
+        "description": "Answer Engine Optimization (AEO) skill \u2014 optimize content to be cited by AI language models (ChatGPT, Perplexity, Claude, Gemini, Mistral) as authoritative sources. Distinct from SEO: AEO optimizes for citation in LLM-generated responses, not search rankings. Use when planning content for AI-first search audiences, auditing existing content for E-E-A-T signals, tracking which pages get cited by which LLMs, or building a citation-friendly content strategy. Triggers \u2014 \"AEO audit\", \"optimize for ChatGPT\", \"get cited by Perplexity\", \"LLM citation strategy\", \"answer engine optimization\", \"content for AI search\", \"E-E-A-T audit\". Output is a markdown audit report (default) or JSON for pipeline integration. Stdlib-only Python tools.",
+        "path": "marketing-skill/aeo"
       },
       {
         "name": "ai-seo",
