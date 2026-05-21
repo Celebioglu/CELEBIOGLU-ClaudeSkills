@@ -153,15 +153,24 @@ def score_profile(profile: dict[str, Any], inputs: Inputs) -> Match:
             inputs.needs_admin_panel == c["admin_panel_needed"],
             weight=1.0,
         )
-    # Language preference soft-match
-    stack_keys = list(profile.keys())
-    stack_lang_hits = sum(
-        1 for k in stack_keys
-        if k.startswith("stack") and inputs.language_preference.lower() in json.dumps(profile.get(k, {})).lower()
-    )
-    base_stack = profile.get("stack", {})
-    if inputs.language_preference and (stack_lang_hits or inputs.language_preference.lower() in json.dumps(base_stack).lower()):
-        check(f"stack-language matches '{inputs.language_preference}'", True, weight=1.0)
+    # Language preference — match only against fields that explicitly name a language:
+    # profile_name, stack.language, stack.runtime. The previous substring search over
+    # the entire serialized profile false-matched e.g. "go" against "django"/"mongo".
+    if inputs.language_preference:
+        lang = inputs.language_preference.lower()
+        stack = profile.get("stack", {})
+        language_fields = [
+            name.lower(),
+            str(stack.get("language", "")).lower(),
+            str(stack.get("runtime", "")).lower(),
+        ]
+        # Token-level match: split on '-' and check exact membership so "go" doesn't
+        # match "mongo" but still matches "go-or-rust-microservice".
+        tokens: set[str] = set()
+        for field in language_fields:
+            tokens.update(field.replace("_", "-").split("-"))
+        if lang in tokens:
+            check(f"stack-language matches '{inputs.language_preference}'", True, weight=1.0)
 
     score = w_matched / w_total if w_total > 0 else 0.0
     return Match(

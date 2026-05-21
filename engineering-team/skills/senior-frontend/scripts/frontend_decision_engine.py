@@ -58,9 +58,11 @@ class Inputs:
                 f"mobile-4g primary with LCP target {self.lcp_target_ms}ms: "
                 "target is too loose for the device class. Tighten to < 2500ms (Web Vitals 'good')."
             )
-        if self.team_size >= 4 and self.team_size <= 10 and self.read_write_ratio >= 50:
-            # Hint: marketing-site shape but with a real team
-            pass
+        if self.primary_device == "mobile-4g" and self.inp_target_ms > 300:
+            kills.append(
+                f"mobile-4g primary with INP target {self.inp_target_ms}ms: "
+                "target is too loose for the device class. Tighten to < 200ms (Web Vitals 'good')."
+            )
         if self.team_size < 1:
             kills.append("team_size < 1 makes no sense.")
         return kills
