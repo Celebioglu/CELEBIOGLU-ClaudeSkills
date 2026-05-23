@@ -61,6 +61,46 @@ def _git_context(cwd: Path) -> str | None:
     return "\n".join(lines)
 
 
+HANDOFF_FILENAME_TOKENS = ("handoff-", "handoff_", "handoff.md")
+
+
+def _save_dirs(config: dict) -> list[Path]:
+    """Directories where existing handoffs might live, in lookup order."""
+    save = config.get("save_location", {})
+    mode = save.get("mode", "temp")
+    raw_path = save.get("path")
+    dirs: list[Path] = []
+    if mode == "temp":
+        dirs.append(Path(tempfile.gettempdir()))
+    elif raw_path:
+        dirs.append(Path(raw_path))
+    proj = Path.cwd() / ".handoff"
+    if proj.exists() and proj not in dirs:
+        dirs.append(proj)
+    return [d for d in dirs if d.exists()]
+
+
+def _find_latest_handoff(config: dict) -> Path | None:
+    latest: tuple[float, Path] | None = None
+    for d in _save_dirs(config):
+        try:
+            for entry in d.iterdir():
+                if not entry.is_file() or not entry.name.lower().endswith(".md"):
+                    continue
+                name = entry.name.lower()
+                if not any(t in name for t in HANDOFF_FILENAME_TOKENS):
+                    continue
+                try:
+                    mtime = entry.stat().st_mtime
+                except OSError:
+                    continue
+                if latest is None or mtime > latest[0]:
+                    latest = (mtime, entry)
+        except OSError:
+            continue
+    return latest[1] if latest else None
+
+
 def _resolve_save_path(config: dict, goal: str, now: dt.datetime) -> Path:
     save = config.get("save_location", {})
     mode = save.get("mode", "temp")
@@ -165,11 +205,27 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Skip git context even if enabled in config.",
     )
+    parser.add_argument(
+        "--refresh",
+        action="store_true",
+        help="Reuse the most recent handoff in the configured location instead of creating a new file. The agent edits it in place.",
+    )
     args = parser.parse_args(argv)
 
     config = config_loader.load_config()
     now = dt.datetime.utcnow()
     goal = args.goal.strip()
+
+    if args.refresh and not args.sample:
+        existing = _find_latest_handoff(config)
+        if existing is not None:
+            if args.print_path_only:
+                print(str(existing))
+            else:
+                print(f"Refresh: reusing existing handoff at {existing}")
+                print("Edit the file in place to reflect the current state.")
+            return 0
+        # Fall through to creating a new one — refresh becomes create-if-missing.
 
     git_block: str | None = None
     if not args.no_git and config.get("include_git_context", True):

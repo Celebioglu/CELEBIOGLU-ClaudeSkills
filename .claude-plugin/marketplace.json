@@ -973,8 +973,8 @@
     {
       "name": "handoff",
       "source": "./productivity/handoff",
-      "description": "Compact the current conversation into a handoff document for another agent to pick up. Configurable save location (no project clutter), redaction enforcement, SessionStart auto-load, mtime-guarded cleanup. Inspired by Matt Pocock's handoff (MIT).",
-      "version": "2.7.4",
+      "description": "Compact the current conversation into a handoff document for another agent to pick up. Configurable save location, redaction enforcement, SessionStart auto-load + SessionEnd reminder, self-check fidelity script, --refresh flag, mtime-guarded cleanup. Inspired by Matt Pocock's handoff (MIT).",
+      "version": "2.7.5",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -984,6 +984,8 @@
         "session-continuity",
         "redaction",
         "session-start-hook",
+        "session-end-hook",
+        "self-check",
         "matt-pocock"
       ],
       "category": "productivity"

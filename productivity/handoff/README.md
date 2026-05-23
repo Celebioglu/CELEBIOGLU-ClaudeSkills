@@ -16,6 +16,14 @@ A productivity-shaped handoff skill. Configurable save location (no project clut
 | 4 | **Redaction linter** | Operationalizes Matt's redaction sentence with regex + whitelist marker + strict/warn modes. |
 | 5 | **mtime-guarded cleanup** | Auto-cleanup never deletes a handoff the user edited as a working surface. |
 
+## v1.1 additions
+
+| Feature | Why |
+|---|---|
+| **SessionEnd reminder hook** | Pairs with SessionStart. If a session ends without a recent handoff, prints a one-line reminder so the user doesn't lose context for next time. Disable with `HANDOFF_SESSIONEND=0`. |
+| **Self-check script** (`handoff_self_check.py`) | Operationalizes the mandatory checklist. Flags empty Goal, State bullets that reference no artifact, missing Open decisions when git is dirty, too few/many Skills, inline content in Artifacts. Runs before the redaction linter. |
+| **`--refresh` flag** on the template generator | Reuses the most recent handoff instead of creating a new file. Keeps the save location uncluttered when work continues past the original handoff. |
+
 ## Install
 
 This plugin lives at `productivity/handoff/`. Enable through your plugin manager. On first invocation of `/cs:handoff`, the skill will prompt:

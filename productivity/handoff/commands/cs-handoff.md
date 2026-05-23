@@ -28,8 +28,19 @@ The argument (if provided) becomes the **Goal of next session** verbatim. Withou
 4. **Generate scaffold.** `python3 ${CLAUDE_PLUGIN_ROOT}/skills/handoff/scripts/handoff_template_generator.py --goal "<goal>"`. Capture the printed path.
 5. **Fill the five sections.** Goal / State of play / Open decisions / Skills to use / Artifacts. Reference artifacts; do not duplicate them.
 6. **Recommend skills.** `python3 ${CLAUDE_PLUGIN_ROOT}/skills/handoff/scripts/skill_recommender.py --goal "<goal>"`. Pick 3-5 max. Edit the auto-list.
-7. **Run the redaction linter.** `python3 ${CLAUDE_PLUGIN_ROOT}/skills/handoff/scripts/redaction_linter.py <path>`. Strict mode by default — resolve findings before save. Use `<!-- handoff:allow secret -->` for true false positives.
-8. **Save and report path.** Print the final path so the user can open it.
+7. **Run the self-check.** `python3 ${CLAUDE_PLUGIN_ROOT}/skills/handoff/scripts/handoff_self_check.py <path>`. Fixes fidelity gaps (empty Goal, State bullets without artifacts, missing Decisions when git is dirty, too few/many Skills, inline content in Artifacts). Strict mode by default — resolve findings before save.
+8. **Run the redaction linter.** `python3 ${CLAUDE_PLUGIN_ROOT}/skills/handoff/scripts/redaction_linter.py <path>`. Strict mode by default — resolve findings before save. Use `<!-- handoff:allow secret -->` for true false positives.
+9. **Save and report path.** Print the final path so the user can open it.
+
+## Refreshing an existing handoff
+
+When work continues past the original handoff, pass `--refresh` to the generator instead of creating a new file:
+
+```bash
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/handoff/scripts/handoff_template_generator.py --refresh --goal "<updated goal>"
+```
+
+The script returns the path of the most recent handoff; edit it in place. Re-run the self-check and redaction linter after editing.
 
 ## What you do NOT do
 

@@ -108,13 +108,32 @@ When the plugin is installed, a `SessionStart` hook scans the configured save lo
 
 Disable per-session with `HANDOFF_SESSIONSTART=0`.
 
+## SessionEnd Reminder
+
+A paired `SessionEnd` hook checks whether a recent handoff exists when the session is ending. If none does (or the most recent is older than 30 minutes), it prints a one-line reminder so the user is prompted to write one before context is lost.
+
+The hook cannot prompt interactively or block session end — it surfaces text in the session log.
+
+Disable per-session with `HANDOFF_SESSIONEND=0`.
+
+## Refreshing an Existing Handoff
+
+When work continues past the original handoff time, refresh in place instead of creating a new file:
+
+```bash
+python3 scripts/handoff_template_generator.py --refresh --goal "<updated goal>"
+```
+
+Prints the path of the most recent handoff. The agent edits it directly. Keeps the save location uncluttered and ensures the SessionStart hook always loads the up-to-date version.
+
 ## Tools
 
 | Tool | Purpose |
 |---|---|
 | `setup.py` | First-run Q&A — save location, retention, redaction strictness, git-context, recommender scope. |
-| `handoff_template_generator.py` | Writes the 5-section scaffold at the configured path. |
+| `handoff_template_generator.py` | Writes the 5-section scaffold at the configured path. `--refresh` reuses the most recent handoff instead of creating a new file. |
 | `redaction_linter.py` | Scans the draft for secrets/PII before save. Exit 1 on findings in strict mode. |
+| `handoff_self_check.py` | Fidelity check — flags empty Goal, State bullets without artifacts, missing Decisions when git is dirty, too few/many Skills, inline content in Artifacts. Run before the linter. |
 | `skill_recommender.py` | Suggests 3-5 skills for the next session based on goal text + repo scan. |
 | `cleanup.py` | Deletes scaffolds older than the retention window. mtime-guarded — never deletes a handoff the user edited. |
 | `config_loader.py` | Shared helper: read project config → global config → defaults. |
