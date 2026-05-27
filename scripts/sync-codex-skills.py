@@ -75,6 +75,10 @@ SKILL_DOMAINS = {
     "commercial": {
         "category": "commercial",
         "description": "Per-deal-and-packaging Commercial skills (v2.8.0): pricing strategy, deal desk, partnerships, channel economics, commercial policy, RFP responder, commercial forecaster"
+    },
+    "research-ops": {
+        "category": "research-ops",
+        "description": "Enterprise Research Operations skills (v2.9.0): clinical study design, R&D program finance, market research methodology, product/user research"
     }
 }
 

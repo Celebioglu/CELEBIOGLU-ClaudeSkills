@@ -1313,6 +1313,50 @@
         "grill-with-docs"
       ],
       "category": "commercial"
+    },
+    {
+      "name": "research-ops-skills",
+      "source": "./research-ops",
+      "description": "Enterprise / cross-functional Research Operations domain — the managed counterpart to the academic research/ domain. v2.9.0 ships 5 skills: orchestrator (context: fork) + clinical-research (study design: protocol synopsis + endpoint selection + sample-size/power for means/proportions/survival + phase-gate feasibility) + research-finance (R&D program budgeting with F&A split + burn/runway + capitalize-vs-expense routing + portfolio ROI) + market-research (TAM/SAM/SOM computed both top-down and bottoms-up + survey sampling with FPC and per-segment minima + Kotler segmentation scoring) + product-research (goal-matched study design + method-based saturation with confidence + insight synthesis that flags single-source anecdotes). Hard rules: clinical outputs are estimates with a named clinical owner (never fact), finance outputs surface assumptions and route capex-vs-opex to a named finance owner (never auto-decide), market sizes show method + assumptions (never a single number), product insights require recurrence across independent participants. 12 stdlib Python tools, 12 reference docs. Distinct from ra-qm-team (regulatory/QM submission), finance (corporate close/valuation), research/grants (funding discovery), product-team (persona/journey/live experiments), marketing-skill (campaign analytics).",
+      "version": "2.9.0",
+      "author": {
+        "name": "Alireza Rezvani"
+      },
+      "keywords": [
+        "research-ops",
+        "research-operations",
+        "clinical-research",
+        "study-design",
+        "endpoint-selection",
+        "sample-size",
+        "power-analysis",
+        "phase-gate",
+        "biostatistics",
+        "research-finance",
+        "rd-budget",
+        "burn-rate",
+        "runway",
+        "fa-rate",
+        "capitalize-vs-expense",
+        "portfolio-roi",
+        "market-research",
+        "tam-sam-som",
+        "market-sizing",
+        "survey-design",
+        "sampling",
+        "segmentation",
+        "competitive-intelligence",
+        "product-research",
+        "ux-research",
+        "jtbd",
+        "usability",
+        "saturation",
+        "insight-synthesis",
+        "research-repository",
+        "matt-pocock",
+        "grill-with-docs"
+      ],
+      "category": "research-ops"
     }
   ]
 }
