@@ -3,7 +3,7 @@
   "name": "claude-code-skills",
   "description": "Production-ready skill packages for AI agents - Marketing, Engineering, Product, C-Level, PM, and RA/QM",
   "repository": "https://github.com/alirezarezvani/claude-skills",
-  "total_skills": 337,
+  "total_skills": 338,
   "skills": [
     {
       "name": "business-growth-skills",
@@ -739,15 +739,15 @@
     },
     {
       "name": "review",
-      "source": "../../engineering-team/playwright-pro/skills/review",
-      "category": "engineering",
-      "description": ">-"
-    },
-    {
-      "name": "review",
       "source": "../../engineering-team/self-improving-agent/skills/review",
       "category": "engineering",
       "description": "Analyze auto-memory for promotion candidates, stale entries, consolidation opportunities, and health metrics."
+    },
+    {
+      "name": "review",
+      "source": "../../engineering-team/playwright-pro/skills/review",
+      "category": "engineering",
+      "description": ">-"
     },
     {
       "name": "security-pen-testing",
@@ -1336,6 +1336,12 @@
       "source": "../../engineering/terraform-patterns/skills/terraform-patterns",
       "category": "engineering-advanced",
       "description": "Terraform infrastructure-as-code agent skill and plugin for Claude Code, Codex, Gemini CLI, Cursor, OpenClaw. Covers module design patterns, state management strategies, provider configuration, security hardening, policy-as-code with Sentinel/OPA, and CI/CD plan/apply workflows. Use when: user wants to design Terraform modules, manage state backends, review Terraform security, implement multi-region deployments, or follow IaC best practices."
+    },
+    {
+      "name": "workflow-builder",
+      "source": "../../engineering/workflow-builder/skills/workflow-builder",
+      "category": "engineering-advanced",
+      "description": "Design and write deterministic multi-agent workflow scripts (.js files in .claude/workflows/) for Claude Code's Workflow tool. Use when a user wants to build, create, author, scaffold, or run a custom Claude Code workflow, orchestrate sub-agents (fan-out, pipeline, loop, judge-panel), or automate a repeatable multi-step task across fresh-context agents."
     },
     {
       "name": "write-a-skill",
@@ -2060,7 +2066,7 @@
       "description": "Software engineering and technical skills"
     },
     "engineering-advanced": {
-      "count": 77,
+      "count": 78,
       "source": "../../engineering",
       "description": "Advanced engineering skills - agents, RAG, MCP, CI/CD, databases, observability"
     },

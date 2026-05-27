@@ -16,7 +16,7 @@
       "name": "marketing-skills",
       "source": "./marketing-skill",
       "description": "44 marketing skills across 7 pods: Content, SEO, CRO, Channels, Growth, Intelligence, Sales enablement, and X/Twitter growth. 51 Python tools, 73 reference docs.",
-      "version": "2.7.3",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -248,7 +248,7 @@
       "name": "engineering-skills",
       "source": "./engineering-team",
       "description": "32 engineering skills: architecture, frontend, backend, fullstack, QA, DevOps, security, AI/ML, data engineering, Playwright (9 sub-skills), self-improving agent, Stripe integration, TDD guide, tech stack evaluator, Google Workspace CLI, a11y audit (WCAG 2.2), Azure cloud architect, GCP cloud architect, security pen testing, Snowflake development, adversarial-reviewer, ai-security, cloud-security, incident-response, red-team, threat-detection. v2.8.1 audits senior-fullstack / senior-frontend / senior-backend against karpathy-coder + Matt Pocock — each ships a 7-question forcing-question library, 4 customization profiles (JSON), deterministic decision engine, composition map into POWERFUL specialists, plus cs-fullstack-engineer / cs-frontend-engineer / cs-backend-engineer orchestrator agents (context: fork) + /cs:fullstack-review, /cs:frontend-review, /cs:backend-review, /cs:engineer-grill slash commands.",
-      "version": "2.8.1",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -842,6 +842,27 @@
       "category": "development"
     },
     {
+      "name": "workflow-builder",
+      "source": "./engineering/workflow-builder",
+      "description": "Workflow-builder skill: design and write deterministic multi-agent workflow scripts (.js files in .claude/workflows/) for Claude Code's Workflow tool (CLAUDE_CODE_WORKFLOWS=1, /workflows). Every session opens with an intake question set; when the user is vague, a stdlib recommendation engine infers and proposes a topology with rationale instead of stalling. Ships 3 stdlib Python tools (intake recommendation engine, .js validator enforcing pure-literal-meta / no-non-determinism / guarded-loop / parallel-thunk rules, topology scaffolder), 3 references citing 7-8 authoritative sources each (API surface, orchestration patterns, decision + intake guide), templates + a runnable example, cs-workflow-architect persona agent + /cs:workflow-build slash command. Use when building, scaffolding, or running a custom Claude Code workflow or orchestrating sub-agents (fan-out, pipeline, loop, judge-panel).",
+      "version": "1.0.0",
+      "author": {
+        "name": "Alireza Rezvani"
+      },
+      "keywords": [
+        "workflow",
+        "claude-code-workflows",
+        "multi-agent",
+        "orchestration",
+        "deterministic",
+        "fan-out",
+        "pipeline",
+        "sub-agents",
+        "meta-skill"
+      ],
+      "category": "development"
+    },
+    {
       "name": "caveman",
       "source": "./engineering/caveman",
       "description": "Ultra-compressed communication mode. Cuts token usage 20-50% (75% upper bound) by dropping filler, articles, pleasantries, and hedging while keeping full technical accuracy. Derived from Matt Pocock's MIT-licensed caveman with: (1) 3 stdlib Python tools (deterministic compressor, token-savings estimator with $/Mtok cost extrapolation, lint that detects banned vocab with code-block + exception-zone whitelisting), (2) 3 references citing 7-8 sources (compression principles, when caveman backfires, companion tooling), (3) cs-caveman-mode persona agent + /cs:caveman slash command. Matt's persistence rules + auto-clarity exception preserved verbatim per MIT.",
@@ -920,7 +941,7 @@
       "name": "capture-skill",
       "source": "./productivity/capture",
       "description": "Brain-dump-to-action workspace skill. Routes vague captures into discoverable actions via classify→cluster→connect→clarify intake. Path-B from megaprompt 05.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -938,7 +959,7 @@
       "name": "email-pair",
       "source": "./productivity/email",
       "description": "Email-workflow skill pair: inbox-setup builds your taxonomy/KB; inbox-triage classifies + drafts (drafts-only, never auto-send). KB-file contract between them. Path-B from megaprompts 06+07.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -957,7 +978,7 @@
       "name": "reflect-skill",
       "source": "./productivity/reflect",
       "description": "Light-prompt reflection skill. Single forcing question + structured journal capture. Path-B sibling of capture from megaprompt 08.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -974,7 +995,7 @@
       "name": "handoff-productivity",
       "source": "./productivity/handoff",
       "description": "Compact the current conversation into a handoff document for another agent to pick up. Configurable save location, redaction enforcement, SessionStart auto-load + SessionEnd reminder, self-check fidelity script, --refresh flag, mtime-guarded cleanup. Inspired by Matt Pocock's handoff (MIT).",
-      "version": "2.8.2",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -994,7 +1015,7 @@
       "name": "andreessen",
       "source": "./productivity/andreessen",
       "description": "Marc Andreessen-mode decision and productivity skill. Market-first operator that pressure-tests ventures/ideas/features/bets (market > team > product; product/market fit is the only milestone; bias to build) and runs the 3x5-card + Anti-Todo routine. Fixed anti-sycophancy operating prompt: counterargument first, no disclaimers, explicit confidence levels, no capitulation. Issues hard verdicts backed by deterministic stdlib tools.",
-      "version": "2.8.4",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1014,7 +1035,7 @@
       "name": "landing",
       "source": "./marketing/landing",
       "description": "Single-file HTML landing-page generator with 4 design styles, brand palette validation, GSAP animation patterns, kebab-slug URL hygiene. Path-B from megaprompt 04.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1033,7 +1054,7 @@
       "name": "pulse",
       "source": "./research/pulse",
       "description": "Multi-source recency research. Reddit/HN/X/web sentiment + trending. Research-pack convention (1 q/sec, three-count tracking). Path-B from megaprompt 01.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1053,7 +1074,7 @@
       "name": "litreview",
       "source": "./research/litreview",
       "description": "Academic literature orientation skill. PICO/SPIDER frameworks, systematic review structure, 8-section DOCX guide. Research-pack convention. Path-B from megaprompt 09.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1073,7 +1094,7 @@
       "name": "grants",
       "source": "./research/grants",
       "description": "NIH grant-funding intelligence skill. RePORTER/NOSI/study-section navigation, R01/R21/K-award strategy. Research-pack convention. Path-B from megaprompt 11.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1094,7 +1115,7 @@
       "name": "dossier",
       "source": "./research/dossier",
       "description": "Decision-grade entity research. Due-diligence/background-check/competitor-prep with tier-weighted verdict + citation tracker. Research-pack convention. Path-B from megaprompt 02.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1114,7 +1135,7 @@
       "name": "patent",
       "source": "./research/patent",
       "description": "Patent prior-art + IP landscape skill. FTO/novelty/family-resolver via 3-pass Jaccard heuristic. Research-pack convention. Path-B from megaprompt 12.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1134,7 +1155,7 @@
       "name": "syllabus",
       "source": "./research/syllabus",
       "description": "Course supplementary-reading skill. Topic-grouper + bundled Node.js DOCX generator for syllabus-anchored reading lists. Research-pack convention. Path-B from megaprompt 10.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1154,7 +1175,7 @@
       "name": "notebooklm",
       "source": "./research/notebooklm",
       "description": "Google NotebookLM browser-automation skill. 4 actions (read/extract, add-source, Studio outputs, create notebook). Screenshot-first + find-before-click + fire-and-notify async discipline. Path-B from megaprompt 03.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1174,7 +1195,7 @@
       "name": "research-orchestrator",
       "source": "./research/research",
       "description": "Research orchestrator (hybrid router + fallback). Deterministic SIGNALS classification routes to 6 specialists (pulse/litreview/grants/dossier/patent/syllabus) at >=2 signals, else runs own 8-step plan-decompose-search-synthesize-cite fallback. Routing transparency mandatory. Path-B from megaprompt 13.",
-      "version": "2.7.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1194,7 +1215,7 @@
       "name": "aeo",
       "source": "./marketing-skill/skills/aeo",
       "description": "Answer Engine Optimization (AEO) skill — optimize content to be cited by AI language models (ChatGPT, Perplexity, Claude, Gemini, Mistral) as authoritative sources. Distinct from SEO (which optimizes for search rankings), AEO optimizes for citation in LLM-generated responses. 3 stdlib Python tools (aeo_audit, aeo_optimizer, citation_tracker), 3 references citing 8 sources each, industry-aware thresholds for 8 industries (saas/healthcare/finance/legal/ecommerce/b2b/media/education). Ported from alirezarezvani/aeo-box.",
-      "version": "2.7.3",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1216,7 +1237,7 @@
       "name": "security-guidance",
       "source": "./engineering/security-guidance",
       "description": "PreToolUse security reminder hook for Claude Code. Catches 12 common security anti-patterns in Edit/Write/MultiEdit operations BEFORE they happen — command injection (exec, os.system, subprocess shell=True), XSS (innerHTML, dangerouslySetInnerHTML, document.write), SQL injection (f-string queries, .format), unsafe deserialization (pickle, yaml.unsafe_load), code injection (eval, new Function), and GitHub Actions workflow injection. Session-state caching prevents duplicate warnings; 30-day auto-cleanup. Disable per-session with ENABLE_SECURITY_REMINDER=0. Ported from David Dworken at Anthropic.",
-      "version": "2.7.3",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1238,7 +1259,7 @@
       "name": "business-operations-skills",
       "source": "./business-operations",
       "description": "Internal BizOps domain. v2.8.0 ships 7 skills: orchestrator + process-mapper (BPMN/bottleneck/cycle-time, Lean+TOC) + vendor-management (scorecard+SLA+3rd-party risk, NIST SP 800-161/ISO 27036) + capacity-planner (Erlang-C queueing math for ops teams, NOT engineering) + internal-comms (ADKAR+Kotter 8-step, NOT marketing) + knowledge-ops (SOP+runbook+KB hygiene with 5W2H, context: fork) + procurement-optimizer (UNSPSC spend categorization + supplier consolidation). Orchestrator uses context: fork to route inquiries via Matt Pocock grill discipline (one question per turn, recommended answer, canon-cited challenge). Every SKILL.md ships a Forcing-question library section. 18 stdlib Python tools, 24+ reference docs. Distinct from business-growth (external sales) and c-level-advisor (strategic).",
-      "version": "2.8.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
@@ -1277,7 +1298,7 @@
       "name": "commercial-skills",
       "source": "./commercial",
       "description": "Per-deal-and-packaging Commercial domain. v2.8.0 ships 8 skills: orchestrator + pricing-strategist (model picker + Van Westendorp WTP + packaging) + deal-desk (deal scorer + discount approval routing + redline) + partnerships-architect (5-tier classifier + joint GTM + revshare modeler) + channel-economics (cost-to-serve + ROI + mix optimizer) + commercial-policy (data-backed discount matrix + exception flow + linter) + rfp-responder (Shipley structured RFP/RFI/RFQ + win-theme + winrate predictor, context: fork) + commercial-forecaster (4Q-weighted bookings + cohort NRR/GRR + funnel-confidence with mandatory assumption disclosure). Hard rules: pricing outputs model+range (never a single number), deal outputs route to named human approver (never auto-approve), forecast outputs surface conversion assumption, RFP never invents claims for GAP requirements. 21 stdlib Python tools, 28+ reference docs. Distinct from business-growth (sales execution), c-level-advisor/cro-advisor (strategic), finance (close+report).",
-      "version": "2.8.0",
+      "version": "2.9.0",
       "author": {
         "name": "Alireza Rezvani"
       },
