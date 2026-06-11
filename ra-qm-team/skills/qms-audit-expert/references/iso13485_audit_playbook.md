@@ -121,7 +121,7 @@ ISO 13485 is the foundation for both EU MDR and FDA QSR compliance.
 | 8.2.1 Post-market | 820.198 (Complaint files) + 803 (MDR reporting — unchanged) |
 | 8.5.2 CAPA | 820.100 |
 
-In February 2024, FDA finalized the QMSR rule incorporating ISO 13485:2016 into 21 CFR 820, substantially harmonizing US and international requirements. It took effect 2026-02-02; an ISO 13485-certified QMS now substantially satisfies 21 CFR 820, with FDA-specific overlays in retained 820.10/820.35/820.45 (labeling, complaint records) and unchanged 21 CFR 803 MDR reporting.
+FDA finalized the QMSR rule in February 2024 (89 FR 7496) incorporating ISO 13485:2016 into 21 CFR 820, substantially harmonizing US and international requirements; it took effect 2026-02-02. An ISO 13485-certified QMS now substantially satisfies 21 CFR 820, with FDA-specific overlays in retained 820.10/820.35/820.45 (labeling, complaint records) and unchanged 21 CFR 803 MDR reporting.
 
 ## Risk Management Audit (ISO 14971 Crosswalk)
 
