@@ -1,15 +1,20 @@
-# These are supported funding model platforms
+# CELEBIOGLU-ClaudeSkills - GitHub Sponsors
+#
+# Bu kütüphane, Claude Code ile çalışan 300+ üretim hazır skill ve agent içerir.
+# Uluslararası ticaret, operasyonel optimizasyon, stratejik karar alma ve AI destekli
+# iş geliştirme süreçlerinde yüksek verimlilik sağlayan profesyonel bir koleksiyondur.
 
-github: # Replace with up to 4 GitHub Sponsors-enabled usernames e.g., [user1, user2]
-patreon: # Replace with a single Patreon username
-open_collective: # Replace with a single Open Collective username
-ko_fi: # Replace with a single Ko-fi username
-tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
-community_bridge: # Replace with a single Community Bridge project-name e.g., cloud-foundry
-liberapay: # Replace with a single Liberapay username
-issuehunt: # Replace with a single IssueHunt username
-lfx_crowdfunding: # Replace with a single LFX Crowdfunding project-name e.g., cloud-foundry
-polar: # Replace with a single Polar username
-buy_me_a_coffee: rezarezvani
-thanks_dev: # Replace with a single thanks.dev username
-custom: # Replace with up to 4 custom sponsorship URLs e.g., ['link1', 'link2']
+github: Celebioglu
+
+# Diğer destek platformları
+custom:
+  # Buy Me a Coffee - Tek seferlik veya aylık destek
+  - https://www.buymeacoffee.com/celebioglu
+  
+  # Patreon - Aylık düzenli destek
+  - https://www.patreon.com/celebioglu
+
+# Sponsor Olursanız Ne Kazanırsınız?
+# → Yeni skill’lerin öncelikli erişimi
+# → Özel istek hakkı (kendi iş süreçlerinize özel skill geliştirme)
+# → AI ajanları ile iş verimliliğinizi ciddi oranda artırma fırsatı
