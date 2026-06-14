@@ -2,38 +2,54 @@
 
 **Hüseyin Selami Çelebioğlu** için özelleştirilmiş Profesyonel Claude Code Skill & Plugin Kütüphanesi.
 
-## Genel Bakış
+> **Vizyon:** The Ultimate Life & Business Intelligence Hub
 
-Bu repository, Claude Code ve diğer modern ajanik AI araçları için **300+ üretim hazır skill, plugin ve agent yeteneği** içeren kapsamlı bir açık kaynak kütüphanedir.
+Bu repository, Claude Code ve diğer modern ajanik AI araçları için **üretim hazır skill, plugin ve agent yeteneği** içeren kapsamlı bir kütüphanedir.
 
-Uluslararası iş süreçlerinde operasyonel verimlilik, stratejik karar alma ve AI destekli iş geliştirme amacıyla özel olarak uyarlanmıştır.
+KAT – SALON – RAF yapısı ile organize edilmiş, hem insan hem de AI agent’lar tarafından kolayca genişletilebilir bir sistemdir.
 
-## Özellikler
+## Yapı (KAT – SALON – RAF)
 
-- **345+ Production-Ready Skill & Plugin**
-- **30+ Agent** ve **70+ Custom Command** desteği
-- **13+ AI Coding Tool** ile tam uyumluluk  
-  (Claude Code, Cursor, Gemini CLI, Aider ve diğerleri)
-- Geniş Kategoriler:
-  - Business Operations & Process Optimization
-  - Commercial Strategy & Deal Flow Management
-  - Finance & Pricing Intelligence
-  - Marketing, Growth & Personal Branding
-  - C-Level Advisory & Executive Decision Support (Founder Mode dahil)
-  - Research & Market Intelligence
-  - Productivity & Workflow Automation
-  - Compliance, Risk & Security Management
+- **KAT**: Her AI Agent için ayrı bölüm (Claude Code, Cursor, Gemini CLI, Aider vb.)
+- **SALON**: Dewey + Congress Library tarzı konu bazlı ana kategoriler
+- **RAF**: Bireysel skill veya alt konu
 
-## Hedef Kullanım Alanları
+## Ana Salonlar (Topics)
 
-- Uluslararası emtia ticareti ve global sourcing operasyonları
-- Stratejik partner ve tedarikçi yönetimi
-- Operasyonel süreç optimizasyonu ve otomasyon
-- Kişisel markalaşma ve yatırımcı outreach
-- Profesyonel karar destek ve danışmanlık sistemleri
+| Kod | Salon | Açıklama |
+|-----|-------|-------------|
+| 000 | General AI Systems | PromptCraft, Multi-Agent Orchestration, Research Orchestrator |
+| 200 | Visa & Oturum | Schengen, ETIAS, Golden Visa, Blue Card, Digital Nomad Visa |
+| 600 | Business & Trade | Alüminyum ticareti, MEASVIA, Financial Intelligence |
+| 900 | History, Geography & Travel | Seyahat rehberleri, kültürel konular |
 
-## Kurulum ve Kullanım
+## Mevcut Aktif SMART SKILL’ler (6 Adet)
 
-### Claude Code için Hızlı Kurulum
+- Visa Documents Assistant v6.6
+- European Residence & Business Setup Guide v6.6
+- Travel Guide Generator v6.5
+- Financial Intelligence & Market Tracker v6.5
+- Investment & Portfolio Manager v6.5
+- Family & Legacy Planning v6.5
+
+## Otomatik Sistemler
+
+- Her akşam 20:00’da (GMT+3) otomatik rapor email olarak gönderilir.
+- Otonom Keşif Döngüsü aktif çalışır.
+- Self-Learning kuralları tanımlanmıştır.
+
+## Agent-Friendly Yapı
+
+Tüm skill’ler agent’lar tarafından kolayca okunup genişletilebilir formatta tasarlanmıştır.
+
+## Kurulum
+
 ```bash
 /plugin marketplace add Celebioglu/CELEBIOGLU-ClaudeSkills
+```
+
+## Katkı
+
+Yeni skill eklemek için `templates/skill-template/` klasöründeki şablonu kullanın.
+
+Son Güncelleme: 14 Haziran 2026
