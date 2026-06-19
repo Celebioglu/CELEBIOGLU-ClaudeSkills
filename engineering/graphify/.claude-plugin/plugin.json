@@ -1,0 +1,15 @@
+{
+  "name": "graphify",
+  "description": "Build a knowledge graph from any codebase or file collection and surface hidden structure, hub nodes (blast radius), orphans (dead code), clusters (coupling), and architectural patterns. Type /graphify <path> to run. Fully multimodal: code (25 languages via tree-sitter AST + stdlib regex fallback), Markdown, JSON/YAML, PDFs, images, screenshots, whiteboard photos, diagrams, and audio/video (Whisper local transcription). Works in Claude Code, Codex, OpenCode, Cursor, Gemini CLI, GitHub Copilot CLI, VS Code Copilot Chat, Aider, OpenClaw, Factory Droid, Trae, Hermes, Kiro, and Google Antigravity. 3 stdlib Python tools: ast_extractor.py (entity extraction), graph_builder.py (graph assembly + pattern detection), graph_renderer.py (Mermaid/DOT/ASCII/JSON/summary output). Use when exploring an unfamiliar codebase, preparing for an architecture review, debugging tangled dependencies, or onboarding to a new project.",
+  "version": "2.10.4",
+  "author": {
+    "name": "Celebioglu ClaudeSkills",
+    "url": "https://github.com/celebioglu/celebioglu-claudeskills"
+  },
+  "homepage": "https://github.com/celebioglu/celebioglu-claudeskills/tree/main/engineering/graphify",
+  "repository": "https://github.com/celebioglu/celebioglu-claudeskills",
+  "license": "MIT",
+  "skills": [
+    "./skills/graphify"
+  ]
+}
